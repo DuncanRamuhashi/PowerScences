@@ -14,11 +14,19 @@ function App() {
   return (
     <>
          <Router>
-          <section id='#Home'><Heading/></section>
+          <section id='Home'><Heading/></section>
+         
+        
           <Routes>
-          <Route  path="/LandingPage" element={<Landing/>}/>
+          
           <Route  path="/MainPage" element={<MainPage/>}/>
           <Route  path="/ViewerPage" element={<ViewerPage/>}/>
+
+          <Route  path="*"  element={
+            <>
+                <section id='Home'><Landing/></section>
+            </>
+          }/>
           </Routes>
           <section id=''><Footing/></section>
          </Router>

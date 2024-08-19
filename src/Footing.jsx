@@ -4,7 +4,7 @@ const Footing = () => {
     // set year
     const year =  new Date().getFullYear();
   return (
-    <div className="flex bg-slate-700 items-center justify-center py-9 w-screen "
+    <div className="flex bg-slate-700 items-center justify-center py-9 w-full "
     style={{ backgroundColor: '#f9e3ce' }}>
             
 
