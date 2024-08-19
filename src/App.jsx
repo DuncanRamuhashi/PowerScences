@@ -1,14 +1,27 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import Heading from './Heading';
+import Footing from './Footing';
+import Landing from './Landing';
+import MainPage from './MainPage';
+import ViewerPage from './ViewerPage';
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
 
   return (
     <>
-         <div className='text-cyan-300'>dsfsdfsdf</div>
+         <Router>
+          <section id='#Home'><Heading/></section>
+          <Routes>
+          <Route  path="/LandingPage" element={<Landing/>}/>
+          <Route  path="/MainPage" element={<MainPage/>}/>
+          <Route  path="/ViewerPage" element={<ViewerPage/>}/>
+          </Routes>
+          <section id=''><Footing/></section>
+         </Router>
     </>
   )
 }
