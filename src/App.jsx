@@ -10,7 +10,9 @@ import ViewerPage from './ViewerPage';
 
  // this is for getting music
 
+//my key :  871ff18874f5530228c9d12e917d83bf 
 
+// refer : https://developer.themoviedb.org/reference/intro/getting-started
 
 function App() {
 
@@ -24,7 +26,7 @@ function App() {
           <Routes>
           
           <Route  path="/MainPage" element={<MainPage/>}/>
-          <Route  path="/ViewerPage/:idProp" element={<ViewerPage/>}/>
+          <Route  path="/ViewerPage/:id" element={<ViewerPage/>}/>
 
           <Route  path="*"  element={
             <>

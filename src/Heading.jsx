@@ -18,14 +18,15 @@ const Heading = () => {
       
       <div className="flex space-x-8 items-center">
         <a href="/Home" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
-         <a href="/genre">
+
+       {/*  <a href="/genre">
          <div className="flex items-center space-x-2">
             
             <h1  className="text-green-700 text-lg hover:text-yellow-500">Genre</h1>
             <img src={ere} alt="Icon" className="w-4 h-6" />
           </div>
          </a>
-        
+         */}
       </div>
     </div>
   </div>

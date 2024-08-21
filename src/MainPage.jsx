@@ -1,35 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const MainPage = () => {
-    const navigate = useNavigate();
-    const goToMovie = () => {
-        navigate('/ViewerPage');
+
+  const navigate = useNavigate();
+
+  let [page, setPage] = useState(1);
+  let [min, setMin] = useState(0);
+  let [max, setMax] = useState(6);
+
+  const pagingHelper = (pageNumber, numberMin, numberMax) => {
+    setPage(pageNumber);
+    setMin(numberMin);
+    setMax(numberMax);
+    console.log(`Page: ${pageNumber}, Min: ${numberMin}, Max: ${numberMax}`); // For debugging
+  };
+
+  const goToMovie = (id) => {
+    navigate(`/ViewerPage/${id}`);
+  }
+      const goToMovies = () => {
+        navigate('/');
       }
     // this is for getting music
 const [music,setMusic] = useState([]);
-const getMusic = async() => {
+const [movies, setMovies] = useState([]);
+const getMovie =() => {
+
+      
+            
+  fetch("https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf")
+  .then(res => res.json())
+  .then(json => {
  
-
-  const url = 'https://spotify23.p.rapidapi.com/search/?q=offset&type=multi&offset=0&limit=20&numberOfTopResults=20';
-         const options = {
-method: 'GET',
-headers: {
-'x-rapidapi-key': 'cb1ad76b2cmsh3edb5daf8471907p1eac0fjsn6208c6507bc7',
-'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-}
-};
-
-       try {
-const response = await fetch(url, options);
-  const result = await response.json();
-    setMusic(result);
-    console.log(result);
-      } catch (error) {
-   console.error(error);
-       }
+      setMovies(json.results); // Sets the movies using the results from the API
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error); // Handles any errors
+  });
 }
 useEffect(()=> {
-  getMusic();
+  getMovie();
+
+
 },[])
   return (
     <div className="bg-[#f9e3ce] w-full h-full space-y-10">
@@ -37,36 +49,49 @@ useEffect(()=> {
       <div className=' justify-center justify-items-center flex space-x-10'>
             
 
-          <h1 className='text-3xl font-bold'> All Artists</h1>
+          <h1 className='text-3xl font-bold'> Popular Movies</h1>
       </div>
              
-
 
       <div className='flex justify-center justify-items-center'>
 
      
       <div className="grid gap-4 grid-cols-4 p-4 " >
-
-                  { music?.artists?.items?.map((m,index) =>{
-                      return <div key={index} >
-                           <a href='' onClick={goToMovie} >
-
-                            <div className="rounded-lg border-4 border-green-700 p-4 bg-white w-60 text-center ">
-                          <img src={m?.data?.visuals?.avatarImage?.sources?.[2]?.url} alt={"Artist"} className="rounded-t-lg w-full h-48  mb-2" />
-                           <h2 className="text-xl font-semibold text-green-700">{m?.data?.profile?.name}</h2>
-                             </div>
-                             </a>
-                             </div>
-                  }
-
-                  )}
+      {movies.slice(min,  max).map((m) => (
+        <div key={m.id}  >
+       <button
+      onClick={ (e) => {
+        e.preventDefault();
+        goToMovie(m.id);
+       }}
+      className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 h-full text-center"
+      >
+      <img
+        src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+        alt={m.original_title}
+        className="rounded-t-lg w-full h-48 mb-2"
+      />
+      <h2 className="text-xl font-semibold text-green-700">{m.original_title}</h2>
+    </button>
+  </div>
+))}
 
 
        </div>
 
+
        </div>
-     
-           
+
+
+       <div className="flex justify-center items-center mt-10 space-x-10">
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 6); }} className='text-green-700 font-semibold'>1</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 12); }} className='text-green-700 font-semibold'>2</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 12, 19); }} className='text-green-700 font-semibold'>3</a>
+    </div>
+
+       <div className="flex justify-center items-center mt-10">
+      <a href='' onClick={goToMovies} className='text-green-700 font-semibold'>Back to Homepage</a>
+    </div>
   </div>
   )
 }

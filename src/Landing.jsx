@@ -28,8 +28,8 @@ import { toast } from 'react-toastify';
 const Landing = () => {
     const navigate = useNavigate();
 
-    const goToMovie = (idProp) => {
-        navigate(`/ViewerPage/${idProp}`);
+    const goToMovie = (id) => {
+        navigate(`/ViewerPage/${id}`);
       }
       const goToMain = () => {
         navigate('/MainPage');
@@ -37,7 +37,7 @@ const Landing = () => {
       }
   const [searchInput, setSearchInput] = useState("");
   const [fGenres, setfGenres] = useState([]);
-  const genres = ["50 Cent","Busta Rhymes", "Dmx", "JAY Z", "Drake"];
+  const genres = ["erwer","wewe", "dfdsf", "twis", "Deadpool"];
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
@@ -54,33 +54,41 @@ const Landing = () => {
   };
    // this is for getting music
 const [music,setMusic] = useState([]);
-const getMusic = async() => {
+const [movies, setMovies] = useState([]);
+const getMovie =() => {
 
-  const url = 'https://spotify23.p.rapidapi.com/search/?q=offset&type=multi&offset=0&limit=20&numberOfTopResults=20';
-         const options = {
-method: 'GET',
-headers: {
-'x-rapidapi-key': 'cb1ad76b2cmsh3edb5daf8471907p1eac0fjsn6208c6507bc7',
-'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-}
-};
-
-       try {
-const response = await fetch(url, options);
-  const result = await response.json();
-    setMusic(result);
-    console.log(result);
-      } catch (error) {
-   console.error(error);
-       }
+  
+            
+  fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=871ff18874f5530228c9d12e917d83bf")
+  .then(res => res.json())
+  .then(json => {
+ 
+      setMovies(json.results); // Sets the movies using the results from the API
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error); // Handles any errors
+  });
+ 
+              
+ //      try {
+//     const url= 'https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf';
+  
+ //    const response = fetch(url);
+ // const result = response.json();
+ //   setMovies(result);
+ //  // console.log(result);
+ //     } catch (error) {
+ //  console.error(error);
+ //      }
 }
 useEffect(()=> {
-  getMusic();
-
+  getMovie();
+  
 },[])
-
+   
     const counter = 0;
   return (
+    
     <div className="bg-[#f9e3ce] w-full h-full space-y-10">
       <div className=' justify-center justify-items-center flex space-x-10'>
         <div >
@@ -109,26 +117,26 @@ useEffect(()=> {
         <div className=' justify-center justify-items-center flex space-x-10'>
               
 
-            <h1 className='text-3xl font-bold'> Latest</h1>
+            <h1 className='text-3xl font-bold'> Latest Movies</h1>
         </div>
                
 
 
         <div className='flex justify-center justify-items-center'>
 
-       
+        {console.log(movies)}
         <div className="grid gap-4 grid-cols-4 p-4 " >
 
-                    { music?.artists?.items?.slice(0,7).map((m,index) =>{
-                        return <div key={index} >
-                             <a   onClick={ (e) => {
+                    { movies.slice(0,8).map((m) =>{
+                        return <div key={m.id} >
+                             <a href=''  onClick={ (e) => {
                               e.preventDefault();
-                              goToMovie(index);
+                              goToMovie(m.id);
                              }} >
 
-                              <div className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 text-center ">
-                            <img src={m?.data?.visuals?.avatarImage?.sources?.[2]?.url} alt={"Artist"} className="rounded-t-lg w-full h-48  mb-2" />
-                             <h2 className="text-xl font-semibold text-green-700">{m?.data?.profile?.name}</h2>
+                              <div className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 h-full text-center  ">
+                            <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt={"Movies"} className="rounded-t-lg w-full h-48  mb-2" />
+                             <h2 className="text-xl font-semibold text-green-700">{m.original_title}</h2>
                                </div>
                                </a>
                                </div>
@@ -143,7 +151,7 @@ useEffect(()=> {
        
              <div className='flex justify-center mt-4'>
             <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700'>
-                 More Artists
+                 More Movies
                 </button>
               </div>
     </div>

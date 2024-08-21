@@ -5,11 +5,12 @@ import mov3 from './assets/Images/oio.jpg'
 import mov4 from './assets/Images/werggg.jpg'
 import mov5 from './assets/Images/rer.jpg'
 import mov6 from './assets/Images/ttt.jpg'
-import { useNavigate,useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const ViewerPage = () => {
      // retrieve id from URL
-     const { idProp } = useParams();
+     const { id } = useParams();
     const navigate = useNavigate();
 
     const goToMovies = () => {
@@ -17,41 +18,55 @@ const ViewerPage = () => {
       }
 
 
+      const [movies, setMovies] = useState([]);
+      const [movie, setMovie] = useState(null);
+      const getMovie =() => {
+      
+        
+                  
+        fetch("https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf")
+        .then(res => res.json())
+        .then(json => {
+       
+            setMovies(json.results); // Sets the movies using the results from the API
+            
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error); // Handles any errors
+        });
+
+       // const dubMovie = movies.find(m => m.id === idProp);
 
 
-         // this is for getting music
-const [music,setMusic] = useState([]);
-const getMusic = async() => {
+       //      try {
+      //     const url= 'https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf';
+        
+       //    const response = fetch(url);
+       // const result = response.json();
+       //   setMovies(result);
+       //  // console.log(result);
+       //     } catch (error) {
+       //  console.error(error);
+       //      }
+      }
+      useEffect(()=> {
+        getMovie();
+          {console.log(movies)}
+      },[])
+      
 
-  const url = 'https://spotify23.p.rapidapi.com/search/?q=offset&type=multi&offset=0&limit=20&numberOfTopResults=20';
-         const options = {
-method: 'GET',
-headers: {
-'x-rapidapi-key': 'cb1ad76b2cmsh3edb5daf8471907p1eac0fjsn6208c6507bc7',
-'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-}
-};
 
-       try {
-const response = await fetch(url, options);
-  const result = await response.json();
-    setMusic(result);
-    console.log(result);
-      } catch (error) {
-   console.error(error);
-       }
-}
-useEffect(()=> {
-  getMusic();
 
-},[])
-   ///  music?.artists?.items?
   return (
-    <div className="bg-[#f9e3ce] w-full h-screen space-y-10 p-6">
 
-    
-    <div className='flex justify-center items-center space-x-10'>
-      <h1 className='text-4xl font-bold text-gray-800'>this is number {idProp}</h1>
+    <div className="bg-[#f9e3ce] w-full h-screen space-y-10 p-6">
+     
+   
+     {movies.map(m => (m.id.toString() === id ? (
+      <div key={m.id}>
+        
+      <div className='flex justify-center items-center space-x-10'>
+      <h1 className='text-4xl font-bold text-gray-800'>{m.original_title}</h1>
     </div>
   
   
@@ -60,7 +75,7 @@ useEffect(()=> {
       <div className="flex flex-col ">
         <a href='#' className='block'>
           <div className="rounded-lg border-4 border-green-700  w-96 h-96 text-center">
-            <img src={mov2} alt="Movie Poster" className="rounded-t-lg w-full h-full  mb-2" />
+            <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt="Movie Poster" className="rounded-t-lg w-full h-full  mb-2" />
             
           </div>
         </a>
@@ -68,13 +83,16 @@ useEffect(()=> {
   
      
       <div className="flex flex-col justify-center">
-        <h2 className="text-2xl font-bold mb-2">Movie Title</h2>
-        <p className="text-gray-700 mb-4">Release Date: August 19, 2024</p>
-        <p className="text-gray-700 mb-6">Director: John Doe</p>
-        <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <h2 className="text-2xl font-bold mb-2">{m.original_title}</h2>
+        <p className="text-gray-700 mb-4">{m.release_date}</p>
+        <p className="text-gray-700 mb-6">Language: {m.original_language}</p>
+        <p className="text-gray-700">{m.overview}</p>
       </div>
     </div>
-  
+    </div>
+     ) : 
+      null))}
+    
     <div className="flex justify-center items-center mt-10">
       <a href='' onClick={goToMovies} className='text-green-700 font-semibold'>Back to Homepage</a>
     </div>
