@@ -6,6 +6,9 @@ import mov4 from './assets/Images/werggg.jpg'
 import mov5 from './assets/Images/rer.jpg'
 import mov6 from './assets/Images/ttt.jpg'
 import { useNavigate } from 'react-router-dom';
+import 'react-toastify/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 //https://www.omdbapi.com/
 
@@ -24,11 +27,13 @@ import { useNavigate } from 'react-router-dom';
 //eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzFmZjE4ODc0ZjU1MzAyMjhjOWQxMmU5MTdkODNiZiIsIm5iZiI6MTcyNDA4MDUzNS45MDY4OTUsInN1YiI6IjY2YzM2MGExNzVjZGE0MDQzMGJmOWRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qobs1DEnqEGuOlOmHMqFSb-PijO0tNc8r1CSI21nUDw
 const Landing = () => {
     const navigate = useNavigate();
-    const goToMovie = () => {
-        navigate('/ViewerPage');
+
+    const goToMovie = (idProp) => {
+        navigate(`/ViewerPage/${idProp}`);
       }
       const goToMain = () => {
         navigate('/MainPage');
+        
       }
   const [searchInput, setSearchInput] = useState("");
   const [fGenres, setfGenres] = useState([]);
@@ -45,6 +50,7 @@ const Landing = () => {
     } else {
       setfGenres([]);
     }
+
   };
    // this is for getting music
 const [music,setMusic] = useState([]);
@@ -70,6 +76,7 @@ const response = await fetch(url, options);
 }
 useEffect(()=> {
   getMusic();
+
 },[])
 
     const counter = 0;
@@ -77,7 +84,7 @@ useEffect(()=> {
     <div className="bg-[#f9e3ce] w-full h-full space-y-10">
       <div className=' justify-center justify-items-center flex space-x-10'>
         <div >
-
+        
         <input
           className="px-4 py-2 ring-8 ring-green-700 w-96 bg-white rounded-lg placeholder-zinc-400"
           placeholder="Search Artist"
@@ -112,16 +119,19 @@ useEffect(()=> {
        
         <div className="grid gap-4 grid-cols-4 p-4 " >
 
-                    { music?.artists?.items?.slice(0,7).map((m) =>{
-                        return < >
-                             <a href='' onClick={goToMovie} >
+                    { music?.artists?.items?.slice(0,7).map((m,index) =>{
+                        return <div key={index} >
+                             <a   onClick={ (e) => {
+                              e.preventDefault();
+                              goToMovie(index);
+                             }} >
 
                               <div className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 text-center ">
                             <img src={m?.data?.visuals?.avatarImage?.sources?.[2]?.url} alt={"Artist"} className="rounded-t-lg w-full h-48  mb-2" />
                              <h2 className="text-xl font-semibold text-green-700">{m?.data?.profile?.name}</h2>
                                </div>
                                </a>
-                        </>
+                               </div>
                     }
 
                     )}

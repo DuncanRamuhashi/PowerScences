@@ -1,23 +1,57 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import mov2 from './assets/Images/mov2.png'
 import mov1 from './assets/Images/ggg.jpg'
 import mov3 from './assets/Images/oio.jpg'
 import mov4 from './assets/Images/werggg.jpg'
 import mov5 from './assets/Images/rer.jpg'
 import mov6 from './assets/Images/ttt.jpg'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams } from 'react-router-dom';
+
 const ViewerPage = () => {
+     // retrieve id from URL
+     const { idProp } = useParams();
     const navigate = useNavigate();
 
     const goToMovies = () => {
         navigate('/');
       }
+
+
+
+
+         // this is for getting music
+const [music,setMusic] = useState([]);
+const getMusic = async() => {
+
+  const url = 'https://spotify23.p.rapidapi.com/search/?q=offset&type=multi&offset=0&limit=20&numberOfTopResults=20';
+         const options = {
+method: 'GET',
+headers: {
+'x-rapidapi-key': 'cb1ad76b2cmsh3edb5daf8471907p1eac0fjsn6208c6507bc7',
+'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+}
+};
+
+       try {
+const response = await fetch(url, options);
+  const result = await response.json();
+    setMusic(result);
+    console.log(result);
+      } catch (error) {
+   console.error(error);
+       }
+}
+useEffect(()=> {
+  getMusic();
+
+},[])
+   ///  music?.artists?.items?
   return (
     <div className="bg-[#f9e3ce] w-full h-screen space-y-10 p-6">
 
     
     <div className='flex justify-center items-center space-x-10'>
-      <h1 className='text-4xl font-bold text-gray-800'>Ringo Gringo</h1>
+      <h1 className='text-4xl font-bold text-gray-800'>this is number {idProp}</h1>
     </div>
   
   

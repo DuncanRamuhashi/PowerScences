@@ -24,7 +24,7 @@ function App() {
           <Routes>
           
           <Route  path="/MainPage" element={<MainPage/>}/>
-          <Route  path="/ViewerPage" element={<ViewerPage/>}/>
+          <Route  path="/ViewerPage/:idProp" element={<ViewerPage/>}/>
 
           <Route  path="*"  element={
             <>

@@ -32,7 +32,7 @@ useEffect(()=> {
   getMusic();
 },[])
   return (
-    <div className="bg-[#f9e3ce] w-full h-screen space-y-10">
+    <div className="bg-[#f9e3ce] w-full h-full space-y-10">
 
       <div className=' justify-center justify-items-center flex space-x-10'>
             
@@ -47,8 +47,8 @@ useEffect(()=> {
      
       <div className="grid gap-4 grid-cols-4 p-4 " >
 
-                  { music?.artists?.items?.map((m) =>{
-                      return < >
+                  { music?.artists?.items?.map((m,index) =>{
+                      return <div key={index} >
                            <a href='' onClick={goToMovie} >
 
                             <div className="rounded-lg border-4 border-green-700 p-4 bg-white w-60 text-center ">
@@ -56,7 +56,7 @@ useEffect(()=> {
                            <h2 className="text-xl font-semibold text-green-700">{m?.data?.profile?.name}</h2>
                              </div>
                              </a>
-                      </>
+                             </div>
                   }
 
                   )}
