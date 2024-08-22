@@ -76,7 +76,7 @@ const ViewerPage = () => {
                 <img 
                   src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
                   alt="Movie Poster" 
-                  className="rounded-t-lg w-full h-full object-cover" 
+                  className="rounded-t-lg w-full h-full " 
                 />
               </div>
             </a>

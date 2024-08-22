@@ -145,7 +145,7 @@ const getMovie =() => {
             <img 
               src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
               alt={m.original_title} 
-              className="rounded-t-lg w-full h-48 mb-2 object-cover" 
+              className="rounded-t-lg w-full h-60 mb-2 " 
             />
             <h2 className="text-lg font-semibold text-green-700">{m.original_title}</h2>
           </div>

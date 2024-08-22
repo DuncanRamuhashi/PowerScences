@@ -64,7 +64,7 @@ useEffect(()=> {
               <img
                 src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
                 alt={m.original_title}
-                className="rounded-t-lg w-full h-32 mb-2 object-cover"
+                className="rounded-t-lg w-full h-60 mb-2 md:h-60 "
               />
               <h2 className="text-sm sm:text-lg font-semibold text-green-700">{m.original_title}</h2>
             </button>
@@ -75,8 +75,8 @@ useEffect(()=> {
   
     <div className="flex justify-center items-center mt-10 space-x-10">
       <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 6); }} className='text-green-700 font-semibold text-sm sm:text-base'>1</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 12); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 12, 19); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 13); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 13, 19); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
     </div>
   
     <div className="flex justify-center items-center mt-6">
