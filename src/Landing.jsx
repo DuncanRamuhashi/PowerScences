@@ -20,7 +20,7 @@ import { toast } from 'react-toastify';
 
 // API KEY
 //871ff18874f5530228c9d12e917d83bf
-
+  //https://api.themoviedb.org/3/search/movie?api_key=871ff18874f5530228c9d12e917d83bf&query=deadpool
 
 // API Read Access Token
 //'https://api.themoviedb.org/3/movie/changes?page=1'
@@ -36,25 +36,26 @@ const Landing = () => {
         
       }
   const [searchInput, setSearchInput] = useState("");
-  const [fGenres, setfGenres] = useState([]);
-  const genres = ["erwer","wewe", "dfdsf", "twis", "Deadpool"];
+ 
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
 
     if (e.target.value.length > 0) {
-      const results = genres.filter((g) =>
-        g.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())
+      const results = searching.filter((g) =>
+        g.original_title.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase())
       );
-      setfGenres(results);
+     
+      searchMovie();
     } else {
-      setfGenres([]);
+      setSearching([]);
     }
 
   };
    // this is for getting music
-const [music,setMusic] = useState([]);
+
 const [movies, setMovies] = useState([]);
+const [searching, setSearching] = useState([]);
 const getMovie =() => {
 
   
@@ -81,12 +82,46 @@ const getMovie =() => {
  //  console.error(error);
  //      }
 }
-useEffect(()=> {
-  getMovie();
-  
-},[])
+
    
     const counter = 0;
+    const [input, setInput] = useState("");
+    const searchMovie =() => {
+
+  
+            
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=871ff18874f5530228c9d12e917d83bf&query=${searchInput}`)
+      .then(res => res.json())
+      .then(json => {
+     
+        setSearching(json.results); // Sets the movies using the results from the API
+      })
+      .catch(error => {
+          console.error('Error fetching data:', error); // Handles any errors
+      });
+     
+                  
+     //      try {
+    //     const url= 'https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf';
+      
+     //    const response = fetch(url);
+     // const result = response.json();
+     //   setMovies(result);
+     //  // console.log(result);
+     //     } catch (error) {
+     //  console.error(error);
+     //      }
+    }
+    
+
+    useEffect(()=> {
+      getMovie();
+    //  searchMovie();
+    },[])
+
+
+
+
   return (
     
     <div className="bg-[#f9e3ce] w-full h-full space-y-10">
@@ -95,19 +130,22 @@ useEffect(()=> {
         
         <input
           className="px-4 py-2 ring-8 ring-green-700 w-96 bg-white rounded-lg placeholder-zinc-400"
-          placeholder="Search Artist"
+          placeholder="Search Movies"
           required
           value={searchInput}
           onChange={handleChange}
         />
-        {fGenres.length > 0 && (
+        {searching.length > 0 && (
           <ul>
-            {fGenres.map((genre, index) => (
-              <li key={index}>{genre}</li>
-            ))}
+            {searching.map((s) => (
+           <li key={s.id}>{s.original_title}</li>
+          ))}
+
           </ul>
         )}
       </div> 
+      {console.log(movies)}
+      {console.log(searching)}
       <div>
       <button className='h-10 w-20 ring-2   ring-green-700 rounded-lg   mix-blend-normal text-xl "'>
           Search
@@ -124,10 +162,31 @@ useEffect(()=> {
 
         <div className='flex justify-center justify-items-center'>
 
-        {console.log(movies)}
+
         <div className="grid gap-4 grid-cols-4 p-4 " >
 
-                    { movies.slice(0,8).map((m) =>{
+        {
+  (searching ? searching : movies.slice(0, 8)).map((m) => (
+    <div key={m.id}>
+      <a href="" onClick={(e) => {
+        e.preventDefault();
+        goToMovie(m.id);
+      }}>
+        <div className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 h-full text-center">
+          <img 
+            src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
+            alt="Movies" 
+            className="rounded-t-lg w-full h-48 mb-2" 
+          />
+          <h2 className="text-xl font-semibold text-green-700">{m.original_title}</h2>
+        </div>
+      </a>
+    </div>
+  ))
+}
+
+
+                    {movies.slice(0,8).map((m) =>{
                         return <div key={m.id} >
                              <a href=''  onClick={ (e) => {
                               e.preventDefault();

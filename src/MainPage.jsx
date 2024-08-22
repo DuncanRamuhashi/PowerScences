@@ -57,6 +57,8 @@ useEffect(()=> {
 
      
       <div className="grid gap-4 grid-cols-4 p-4 " >
+
+        
       {movies.slice(min,  max).map((m) => (
         <div key={m.id}  >
        <button
