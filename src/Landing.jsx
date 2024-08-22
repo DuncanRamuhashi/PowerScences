@@ -46,7 +46,7 @@ const getMovie =() => {
 
   
             
-  fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=871ff18874f5530228c9d12e917d83bf")
+  fetch("https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf")
   .then(res => res.json())
   .then(json => {
  
