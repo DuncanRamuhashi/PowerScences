@@ -21,7 +21,7 @@ const MainPage = () => {
       const goToMovies = () => {
         navigate('/');
       }
-    // this is for getting music
+    // this is for getting movies
 const [music,setMusic] = useState([]);
 const [movies, setMovies] = useState([]);
 const getMovie =() => {
@@ -44,57 +44,46 @@ useEffect(()=> {
 
 },[])
   return (
-    <div className="bg-[#f9e3ce] w-full h-full space-y-10">
+    <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
 
-      <div className=' justify-center justify-items-center flex space-x-10'>
-            
-
-          <h1 className='text-3xl font-bold'> Popular Movies</h1>
+    <div className='flex justify-center'>
+      <h1 className='text-2xl md:text-3xl font-bold'>Popular Movies</h1>
+    </div>
+  
+    <div className='flex justify-center'>
+      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4">
+        {movies.slice(min, max).map((m) => (
+          <div key={m.id}>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                goToMovie(m.id);
+              }}
+              className="rounded-lg border-4 border-green-700 p-2 bg-[#f9e3ce] w-full  text-center"
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                alt={m.original_title}
+                className="rounded-t-lg w-full h-32 mb-2 object-cover"
+              />
+              <h2 className="text-sm sm:text-lg font-semibold text-green-700">{m.original_title}</h2>
+            </button>
+          </div>
+        ))}
       </div>
-             
-
-      <div className='flex justify-center justify-items-center'>
-
-     
-      <div className="grid gap-4 grid-cols-4 p-4 " >
-
-        
-      {movies.slice(min,  max).map((m) => (
-        <div key={m.id}  >
-       <button
-      onClick={ (e) => {
-        e.preventDefault();
-        goToMovie(m.id);
-       }}
-      className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] w-60 h-full text-center"
-      >
-      <img
-        src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
-        alt={m.original_title}
-        className="rounded-t-lg w-full h-48 mb-2"
-      />
-      <h2 className="text-xl font-semibold text-green-700">{m.original_title}</h2>
-    </button>
-  </div>
-))}
-
-
-       </div>
-
-
-       </div>
-
-
-       <div className="flex justify-center items-center mt-10 space-x-10">
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 6); }} className='text-green-700 font-semibold'>1</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 12); }} className='text-green-700 font-semibold'>2</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 12, 19); }} className='text-green-700 font-semibold'>3</a>
     </div>
-
-       <div className="flex justify-center items-center mt-10">
-      <a href='' onClick={goToMovies} className='text-green-700 font-semibold'>Back to Homepage</a>
+  
+    <div className="flex justify-center items-center mt-10 space-x-10">
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 6); }} className='text-green-700 font-semibold text-sm sm:text-base'>1</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 12); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 12, 19); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
+    </div>
+  
+    <div className="flex justify-center items-center mt-6">
+      <a href='' onClick={goToMovies} className='text-green-700 font-semibold text-sm sm:text-base'>Back to Homepage</a>
     </div>
   </div>
+  
   )
 }
 

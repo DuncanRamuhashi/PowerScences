@@ -8,28 +8,20 @@ const Heading = () => {
 
 
   return (
-    <div className="bg-[#f9e3ce] py-4 w-full">
-    <div className="container mx-auto flex items-center justify-between px-6">
-      
-      <a href="/Home">
-        <img src={logo} alt="Logo" className="w-64 h-40" />
-      </a>
+<div className="bg-[#f9e3ce] py-4 w-full">
+  <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
+    
+    <a href="/Home" className="mb-4 md:mb-0">
+      <img src={logo} alt="Logo" className="w-48 md:w-64 h-auto" />
+    </a>
+    
+    <div className="hidden md:flex md:flex-col  md:space-y-0 md:space-x-8 items-center">
+  <a href="/Home" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
+</div>
 
-      
-      <div className="flex space-x-8 items-center">
-        <a href="/Home" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
-
-       {/*  <a href="/genre">
-         <div className="flex items-center space-x-2">
-            
-            <h1  className="text-green-700 text-lg hover:text-yellow-500">Genre</h1>
-            <img src={ere} alt="Icon" className="w-4 h-6" />
-          </div>
-         </a>
-         */}
-      </div>
-    </div>
   </div>
+</div>
+
   )
 }
 
