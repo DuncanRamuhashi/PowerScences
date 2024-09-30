@@ -134,7 +134,7 @@ const getMovie =() => {
           e.preventDefault();
           goToMovie(m.id);
         }}>
-          <div className="rounded-lg border-4 border-green-700 p-4 bg-[#f9e3ce] text-center ">
+          <div className="rounded-lg border-4 border-green-700 p-4 h-[350px] bg-[#f9e3ce] text-center ">
             <img 
               src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
               alt={m.original_title} 

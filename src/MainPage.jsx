@@ -59,7 +59,7 @@ useEffect(()=> {
                 e.preventDefault();
                 goToMovie(m.id);
               }}
-              className="rounded-lg border-4 border-green-700 p-2 bg-[#f9e3ce] w-full  text-center"
+              className=" h-[350px] rounded-lg border-4 border-green-700 p-2  bg-[#f9e3ce] w-full   text-center"
             >
               <img
                 src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
