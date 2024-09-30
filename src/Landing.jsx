@@ -12,12 +12,12 @@ import { toast } from 'react-toastify';
 
 //U5MTdkODNiZiIsIm5iZiI6MTcyNDA4MDUzNS45MDY4OTUsInN1YiI6IjY2YzM2MGExNzVjZGE0MDQzMGJmOWRkOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qobs1DEnqEGuOlOmHMqFSb-PijO0tNc8r1CSI21nUDw
 const Landing = () => {
-    const navigate = useNavigate();
+ const navigate = useNavigate();
 
-    const goToMovie = (id) => {
+ const goToMovie = (id) => {
         navigate(`/ViewerPage/${id}`);
       }
-      const goToMain = () => {
+ const goToMain = () => {
         navigate('/MainPage');
         
       }
@@ -120,21 +120,13 @@ const getMovie =() => {
         value={searchInput}
         onChange={handleChange}
       />
-      {searching.length > 0 && (
-        <ul className="w-full max-w-md">
-          {searching.map((s) => (
-            <li key={s.id} className="py-2">{s.original_title}</li>
-          ))}
-        </ul>
-      )}
+
     </div>
-    <button className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl'>
-      Search
-    </button>
+   
     <h1 className='text-2xl font-bold text-center'>Latest Movies</h1>
   </div>
-
-  <div className='flex flex-wrap justify-center gap-4'>
+  <div className='flex justify-center'>
+  <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4 lg:px-96'>
     {(searching.length > 0 ? searching : movies.slice(0, 8)).map((m) => (
       <div key={m.id} className="w-full max-w-sm">
         <a href="" onClick={(e) => {
@@ -153,7 +145,9 @@ const getMovie =() => {
       </div>
     ))}
   </div>
+  </div>
 
+  
   <div className='flex justify-center mt-4'>
     <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700'>
       More Movies

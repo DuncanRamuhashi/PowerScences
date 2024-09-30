@@ -6,7 +6,7 @@ const MainPage = () => {
 
   let [page, setPage] = useState(1);
   let [min, setMin] = useState(0);
-  let [max, setMax] = useState(6);
+  let [max, setMax] = useState(8);
 
   const pagingHelper = (pageNumber, numberMin, numberMax) => {
     setPage(pageNumber);
@@ -50,7 +50,7 @@ useEffect(()=> {
       <h1 className='text-2xl md:text-3xl font-bold'>Popular Movies</h1>
     </div>
   
-    <div className='flex justify-center'>
+    <div className='flex justify-center lg:px-96'>
       <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4">
         {movies.slice(min, max).map((m) => (
           <div key={m.id}>
@@ -74,9 +74,9 @@ useEffect(()=> {
     </div>
   
     <div className="flex justify-center items-center mt-10 space-x-10">
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 6); }} className='text-green-700 font-semibold text-sm sm:text-base'>1</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 6, 13); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 13, 19); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 8); }} className='text-green-700 font-semibold text-sm sm:text-base'>1</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 8, 16); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 16, 20); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
     </div>
   
     <div className="flex justify-center items-center mt-6">

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import logo from './assets/logog.jpg'
+import logo from './assets/logo3.png'
 import ere from './assets/ere.png'
 
 const Heading = () => {
-    const genres = ["Horror", "Action", "Comedy", "Romance"];
+    
 
 
 
