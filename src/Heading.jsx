@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import logo from './assets/logo3.png'
 import ere from './assets/ere.png'
+import { Link } from 'react-router-dom'
 
 const Heading = () => {
     
@@ -13,12 +14,20 @@ const Heading = () => {
     
     <a href="/" className="mb-4 md:mb-0">
       <img src={logo} alt="Logo" className="w-48 md:w-64 h-auto" />
-    </a>
-    
-    <div className="hidden md:flex md:flex-col  md:space-y-0 md:space-x-8 items-center">
-  <a href="/" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
-</div>
-
+    </a> 
+    <div className=" md:space-y-0  space-x-10 items-center">
+          <a href="/" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
+          <Link to={'/MainPage'}> 
+          <a  className="text-green-700 text-lg hover:text-yellow-500">Movies</a>
+          </Link>
+         
+         
+          <Link  to={'/About'}>
+          <a className="text-green-700 text-lg hover:text-yellow-500">About</a>
+          </Link>
+         
+         
+        </div>
   </div>
 </div>
 

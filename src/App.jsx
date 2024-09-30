@@ -7,6 +7,7 @@ import Footing from './Footing';
 import Landing from './Landing';
 import MainPage from './MainPage';
 import ViewerPage from './ViewerPage';
+import About from './About';
 
  // this is for getting music
 
@@ -16,15 +17,15 @@ import ViewerPage from './ViewerPage';
 
 function App() {
 
-
+// <section id='Home'><Heading/></section>
   return (
     <>
          <Router>
-          <section id='Home'><Heading/></section>
+         <section  id='Home'><Heading/></section>
          
         
           <Routes>
-          
+          <Route  path="/About" element={<About/>}/>
           <Route  path="/MainPage" element={<MainPage/>}/>
           <Route  path="/ViewerPage/:id" element={<ViewerPage/>}/>
 

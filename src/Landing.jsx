@@ -111,6 +111,7 @@ const getMovie =() => {
   return (
     
 <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
+  
   <div className='flex flex-col items-center space-y-4'>
     <div className='flex flex-col items-center space-y-4 w-full'>
       <input
@@ -123,7 +124,7 @@ const getMovie =() => {
 
     </div>
    
-    <h1 className='text-2xl font-bold text-center'>Latest Movies</h1>
+    <h1 className='text-2xl font-bold text-center'>Popular Movies</h1>
   </div>
   <div className='flex justify-center'>
   <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4 lg:px-96'>
@@ -149,7 +150,7 @@ const getMovie =() => {
 
   
   <div className='flex justify-center mt-4'>
-    <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700'>
+    <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
       More Movies
     </button>
   </div>

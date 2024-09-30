@@ -45,9 +45,9 @@ useEffect(()=> {
 },[])
   return (
     <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
-
+    
     <div className='flex justify-center'>
-      <h1 className='text-2xl md:text-3xl font-bold'>Popular Movies</h1>
+      <h1 className='text-2xl md:text-3xl font-bold'>Latest Movies</h1>
     </div>
   
     <div className='flex justify-center lg:px-96'>
@@ -74,13 +74,13 @@ useEffect(()=> {
     </div>
   
     <div className="flex justify-center items-center mt-10 space-x-10">
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 8); }} className='text-green-700 font-semibold text-sm sm:text-base'>1</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 8, 16); }} className='text-green-700 font-semibold text-sm sm:text-base'>2</a>
-      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 16, 20); }} className='text-green-700 font-semibold text-sm sm:text-base'>3</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(1, 0, 8); }} className='text-green-700  hover:text-yellow-500 font-semibold text-sm sm:text-base'>1</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(2, 8, 16); }} className='text-green-700 hover:text-yellow-500 font-semibold text-sm sm:text-base'>2</a>
+      <a href='' onClick={(e) => { e.preventDefault(); pagingHelper(3, 16, 20); }} className='text-green-700 hover:text-yellow-500 font-semibold text-sm sm:text-base'>3</a>
     </div>
   
     <div className="flex justify-center items-center mt-6">
-      <a href='' onClick={goToMovies} className='text-green-700 font-semibold text-sm sm:text-base'>Back to Homepage</a>
+      <a href='' onClick={goToMovies} className='text-green-700 font-semibold text-sm sm:text-base hover:text-yellow-500'>Back to Homepage</a>
     </div>
   </div>
   
