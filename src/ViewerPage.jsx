@@ -70,7 +70,10 @@ const ViewerPage = () => {
             <h2 className="text-xl md:text-2xl font-bold mb-2">{movies ? movies.title : 'Loading...'}</h2>
             <p className="text-gray-700 mb-2">{movies ? movies.release_date : 'Loading...'}</p>
             <p className="text-gray-700 mb-4">{movies ? `Language: ${movies.original_language}` : 'Loading...'}</p>
-            <p className="text-gray-700">{movies ? movies.overview : 'Loading...'}</p>
+            <p className="text-gray-700 mb-4">{movies ? movies.overview : 'Loading...'}</p>
+            <p className="text-gray-700 mb-4">{movies ? movies.tagline : 'Loading...'}</p>
+            <p className="text-gray-700 mb-4">{movies ? `Ratings: ${movies.vote_average}` : 'Loading...'}</p>
+            
           </div>
         </div>
       </div>
