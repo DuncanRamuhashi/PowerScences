@@ -20,8 +20,12 @@ const Landing = () => {
       const goToTv = (id) => {
         navigate(`/ViewerPage/${id}/tv`);
       }
- const goToMain = () => {
-        navigate('/MainPage');
+ const goToMovies = () => {
+        navigate('/MoviePage');
+        
+      }
+      const goToTvs = () => {
+        navigate('/SeriesPage');
         
       }
   const [searchInput, setSearchInput] = useState("");
@@ -171,7 +175,7 @@ const getTV =() => {
 
   
   <div className='flex justify-center mt-4'>
-    <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
+    <button onClick={goToMovies} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
       More Movies
     </button>
   </div>
@@ -188,7 +192,7 @@ const getTV =() => {
   </div>
   <div className='flex justify-center'>
   <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4 lg:px-96'>
-    {(searching.length > 0 ? searching : tv.slice(0, 8)).map((m) => (
+    {(tv.slice(0, 8)).map((m) => (
       <div key={m.id} className="w-full max-w-sm">
         <a href="" onClick={(e) => {
           e.preventDefault();
@@ -210,7 +214,7 @@ const getTV =() => {
 
   
   <div className='flex justify-center mt-4'>
-    <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
+    <button onClick={goToTvs} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
       More Series
     </button>
   </div>
