@@ -44,7 +44,7 @@ const getMovie =() => {
     <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
     
     <div className='flex justify-center'>
-      <h1 className='text-2xl md:text-3xl font-bold'>Latest Movies</h1>
+      <h1 className='text-2xl md:text-3xl font-bold'>Latest Series</h1>
     </div>
   
     <div className='flex justify-center lg:px-96'>
