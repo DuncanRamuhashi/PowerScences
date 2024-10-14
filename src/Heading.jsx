@@ -17,10 +17,12 @@ const Heading = () => {
     </a> 
     <div className=" md:space-y-0  space-x-10 items-center">
           <a href="/" className="text-green-700 text-lg hover:text-yellow-500">Home</a>
-          <Link to={'/MainPage'}> 
+          <Link to={'/MoviePage'}> 
           <a  className="text-green-700 text-lg hover:text-yellow-500">Movies</a>
           </Link>
-         
+          <Link to={'/SeriesPage'}> 
+          <a  className="text-green-700 text-lg hover:text-yellow-500">Series</a>
+          </Link>
          
           <Link  to={'/About'}>
           <a className="text-green-700 text-lg hover:text-yellow-500">About</a>

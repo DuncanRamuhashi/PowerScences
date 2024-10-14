@@ -8,6 +8,7 @@ import Landing from './Landing';
 import MainPage from './MainPage';
 import ViewerPage from './ViewerPage';
 import About from './About';
+import SeriesPage from './SeriesPage';
 
  // this is for getting music
 
@@ -26,8 +27,9 @@ function App() {
         
           <Routes>
           <Route  path="/About" element={<About/>}/>
-          <Route  path="/MainPage" element={<MainPage/>}/>
-          <Route  path="/ViewerPage/:id" element={<ViewerPage/>}/>
+          <Route  path="/MoviePage" element={<MainPage/>}/>
+          <Route  path="/SeriesPage" element={<SeriesPage/>}/>
+          <Route  path="/ViewerPage/:id/:type" element={<ViewerPage/>}/>
 
           <Route  path="*"  element={
             <>

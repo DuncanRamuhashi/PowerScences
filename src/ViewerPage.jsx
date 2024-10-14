@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ViewerPage = () => {
-  const { id } = useParams();
+  const { id, type } = useParams();
   const navigate = useNavigate();
 
   const [movies, setMovies] = useState(null);
@@ -13,18 +13,19 @@ const ViewerPage = () => {
   };
 
   const getMovie = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=871ff18874f5530228c9d12e917d83bf`)
+    fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=871ff18874f5530228c9d12e917d83bf`)
       .then((res) => res.json())
       .then((json) => {
         setMovies(json);
+        console.log(json);
       })
       .catch((error) => {
-        console.error('Error fetching movie data:', error);
+        console.error('Error fetching movjie data:', error);
       });
   };
-
+ //'https://api.themoviedb.org/3/tv/series_id/videos?language=en-US', options
   const getVideos = () => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=871ff18874f5530228c9d12e917d83bf`)
+    fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=871ff18874f5530228c9d12e917d83bf`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -49,7 +50,7 @@ const ViewerPage = () => {
       <div className="flex flex-col items-center space-y-6">
         <div className='flex flex-col items-center space-y-4'>
           <h1 className='text-3xl sm:text-4xl font-bold text-gray-800 text-center'>
-            {movies ? movies.original_title : 'Loading...'}
+            {movies ? movies.original_name : 'Loading...'}
           </h1>
         </div>
 

@@ -14,8 +14,11 @@ import { toast } from 'react-toastify';
 const Landing = () => {
  const navigate = useNavigate();
 
- const goToMovie = (id) => {
-        navigate(`/ViewerPage/${id}`);
+      const goToMovie = (id) => {
+        navigate(`/ViewerPage/${id}/movie`);
+      }
+      const goToTv = (id) => {
+        navigate(`/ViewerPage/${id}/tv`);
       }
  const goToMain = () => {
         navigate('/MainPage');
@@ -41,11 +44,12 @@ const Landing = () => {
    // this is for getting movies
 
 const [movies, setMovies] = useState([]);
+const [tv, setTv] = useState([]);
 const [searching, setSearching] = useState([]);
 const getMovie =() => {
 
   
-            
+  //https://api.themoviedb.org/3/discover/tv?api_key=871ff18874f5530228c9d12e917d83bf 
   fetch("https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf")
   .then(res => res.json())
   .then(json => {
@@ -57,21 +61,29 @@ const getMovie =() => {
   });
  
               
- //      try {
-//     const url= 'https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf';
+}
+const getTV =() => {
+
   
- //    const response = fetch(url);
- // const result = response.json();
- //   setMovies(result);
- //  // console.log(result);
- //     } catch (error) {
- //  console.error(error);
- //      }
+  //https://api.themoviedb.org/3/discover/tv?api_key=871ff18874f5530228c9d12e917d83bf 
+  fetch("https://api.themoviedb.org/3/discover/tv?api_key=871ff18874f5530228c9d12e917d83bf")
+  .then(res => res.json())
+  .then(json => {
+ 
+      setTv(json.results); // Sets the movies using the results from the API
+      console.log(json.results)
+  })
+  .catch(error => {
+      console.error('Error fetching data:', error); // Handles any errors
+  });
+ 
+              
 }
 
-   
+     
     const counter = 0;
     const [input, setInput] = useState("");
+    //https://api.themoviedb.org/3/search/tv??api_key=871ff18874f5530228c9d12e917d83bf&query=${searchInput}
     const searchMovie =() => {
 
   
@@ -80,28 +92,37 @@ const getMovie =() => {
       .then(res => res.json())
       .then(json => {
      
-        setSearching(json.results); // Sets the movies using the results from the API
+        setSearching(json.results); 
       })
       .catch(error => {
-          console.error('Error fetching data:', error); // Handles any errors
+          console.error('Error fetching data:', error); //
       });
      
                   
-     //      try {
-    //     const url= 'https://api.themoviedb.org/3/discover/movie?api_key=871ff18874f5530228c9d12e917d83bf';
-      
-     //    const response = fetch(url);
-     // const result = response.json();
-     //   setMovies(result);
-     //  // console.log(result);
-     //     } catch (error) {
-     //  console.error(error);
-     //      }
+
+    }
+    const searchTv =() => {
+
+  
+            
+      fetch(`https://api.themoviedb.org/3/search/tv?api_key=871ff18874f5530228c9d12e917d83bf&query=${searchInput}`)
+      .then(res => res.json())
+      .then(json => {
+     
+        setSearching(json.results); 
+      })
+      .catch(error => {
+          console.error('Error fetching data:', error); //
+      });
+     
+                  
+
     }
     
 
     useEffect(()=> {
       getMovie();
+      getTV();
     //  searchMovie();
     },[])
 
@@ -109,7 +130,7 @@ const getMovie =() => {
 
 
   return (
-    
+    <>
 <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
   
   <div className='flex flex-col items-center space-y-4'>
@@ -155,7 +176,46 @@ const getMovie =() => {
     </button>
   </div>
 </div>
+   
 
+
+   <div className="bg-[#f9e3ce] w-full h-full space-y-10 p-4">
+  
+  <div className='flex flex-col items-center space-y-4'>
+
+   
+    <h1 className='text-2xl font-bold text-center'>Popular Series</h1>
+  </div>
+  <div className='flex justify-center'>
+  <div className='grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 p-4 lg:px-96'>
+    {(searching.length > 0 ? searching : tv.slice(0, 8)).map((m) => (
+      <div key={m.id} className="w-full max-w-sm">
+        <a href="" onClick={(e) => {
+          e.preventDefault();
+          goToTv(m.id);
+        }}>
+          <div className="rounded-lg border-4 border-green-700 p-4 h-[350px] bg-[#f9e3ce] text-center ">
+            <img 
+              src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
+              alt={m.original_name} 
+              className="rounded-t-lg w-full h-60 mb-2 " 
+            />
+            <h2 className="text-lg font-semibold text-green-700">{m.original_name}</h2>
+          </div>
+        </a>
+      </div>
+    ))}
+  </div>
+  </div>
+
+  
+  <div className='flex justify-center mt-4'>
+    <button onClick={goToMain} className='h-10 w-32 ring-2 ring-green-700 rounded-lg text-xl bg-white text-green-700 hover:text-yellow-500'>
+      More Series
+    </button>
+  </div>
+</div>
+</>
   ); 
 };
 
