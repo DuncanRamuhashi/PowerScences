@@ -16,7 +16,7 @@ const MainPage = () => {
   };
 
   const goToMovie = (id) => {
-    navigate(`/ViewerPage/${id}`);
+    navigate(`/ViewerPage/${id}/movie`);
   }
       const goToMovies = () => {
         navigate('/');
