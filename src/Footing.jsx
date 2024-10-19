@@ -1,20 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const Footing = () => {
-    // set year
-    const year =  new Date().getFullYear();
+  // Set current year
+  const year = new Date().getFullYear();
+
   return (
-    <div className="flex bg-slate-700 items-center justify-center py-9 w-full "
-    style={{ backgroundColor: '#f9e3ce' }}>
-            
+    <div className="bg-slate-700 w-full">
+      <footer className="py-6 text-center">
+        <p className="text-green-700 text-lg">
+          &copy; {year} Duncan Ramuhashi. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  );
+};
 
-   
-    <footer className=" p-4 text-center">
-    <p className='text-green-700'>&copy; {year} Duncan Ramuhashi. All rights reserved.</p>
-    </footer>
-
-</div> 
-  )
-}
-
-export default Footing
+export default Footing;

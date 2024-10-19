@@ -2,8 +2,8 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className="bg-gradient-to-r from-[#f9e3ce] to-[#ffe4d0] min-h-screen p-8 flex flex-col items-center">
-      <h1 className="text-4xl font-bold text-center text-green-800 mb-6">About PowerScene</h1>
+    <div className="bg-gray-100 min-h-screen p-6 flex flex-col items-center">
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">About PowerScene</h1>
       <p className="text-lg text-center mb-4 max-w-3xl">
         Welcome to <strong>PowerScene</strong>! We're passionate about movies and series, dedicated to providing you with an exceptional viewing experience. Explore our vast library of films and shows, watch trailers, and dive into detailed information.
       </p>
