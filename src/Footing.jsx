@@ -5,7 +5,7 @@ const Footing = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="bg-slate-700 w-full">
+    <div className="bg-gray-900 w-full">
       <footer className="py-6 text-center">
         <p className="text-green-700 text-lg">
           &copy; {year} Duncan Ramuhashi. All rights reserved.

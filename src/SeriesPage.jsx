@@ -40,9 +40,9 @@ const SeriesPage = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen p-6">
+    <div className="bg-gray-950 w-full min-h-screen p-6">
       <div className='flex justify-center mb-6'>
-        <h1 className='text-4xl font-bold text-gray-800'>Latest Series</h1>
+        <h1 className='text-4xl font-bold text-gray-300'>Latest Series</h1>
       </div>
 
       <div className='flex justify-center'>
@@ -52,7 +52,7 @@ const SeriesPage = () => {
               <img
                 src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
                 alt={m.original_name}
-                className="w-96 h-64 object-cover transition-transform transform hover:scale-105"
+                className="w-96 h-64 object-fill transition-transform transform hover:scale-105"
               />
               <div className="p-4">
                 <h2 className="text-lg text-center font-semibold text-green-700">{m.original_name}</h2>

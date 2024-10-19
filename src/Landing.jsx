@@ -73,7 +73,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full min-h-screen p-6">
+    <div className="bg-gray-950 w-full min-h-screen p-6">
       {/* Search Bar */}
       <div className="flex flex-col items-center mb-8">
         <input
@@ -86,7 +86,7 @@ const Landing = () => {
       </div>
       
       {/* Popular Movies Section */}
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Popular Movies</h1>
+      <h1 className="text-4xl font-bold text-center text-gray-300 mb-6">Popular Movies</h1>
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8 ">
         {(searching.length > 0 ? searching : movies.slice(0, 8)).map((m) => (
@@ -94,7 +94,7 @@ const Landing = () => {
             <img 
               src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} 
               alt={m.original_title} 
-              className="w-full h-64 object-cover transition-transform transform hover:scale-105" 
+              className="w-full h-64 object-fill transition-transform transform hover:scale-105" 
             />
             <div className="p-4 ">
               <h2 className="text-lg font-semibold text-green-700">{m.original_title}</h2>
@@ -114,7 +114,7 @@ const Landing = () => {
       </div>
 
       {/* Popular Series Section */}
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">Popular Series</h1>
+      <h1 className="text-4xl font-bold text-center text-gray-300 mb-6">Popular Series</h1>
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-8">
         {tv.slice(0, 8).map((m) => (

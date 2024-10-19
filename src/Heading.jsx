@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Heading = () => {
   return (
-    <div className="bg-[#f9e3ce] py-4 w-full">
+    <div className="bg-gray-900 py-4 w-full">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6">
         
         {/* Logo Section */}
